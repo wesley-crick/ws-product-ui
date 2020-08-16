@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { AppComponent } from './app.component/app.component';
+import { EventsChartComponent } from './events-chart/events-chart.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EventsChartComponent
   ],
   imports: [
     BrowserModule,
