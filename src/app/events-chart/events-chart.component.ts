@@ -31,19 +31,23 @@ export class EventsChartComponent implements OnInit {
       return;
     }
 
-    const data: ChartData = Event.convertArrayToChart(events);
+    const cd: ChartData = Event.convertArrayToChart(events);
+
+    const series: EChartOption.Series[] = cd.data.map<EChartOption.Series>(
+     (d) => {
+      return {
+        data: d,
+        type: "bar"
+      }
+     }
+    );
 
     this.eventsDailyChartOptions = {
       xAxis: {  // Labels for x axis
-        data: data.xAxis,
+        data: cd.xAxis,
       },
       yAxis: {},
-      series: [
-        {
-          data: data.yAxis,
-          type: "bar"
-        }
-      ],
+      series: series,
       tooltip: {},
       title: {
         text: "Events Daily"
@@ -60,19 +64,23 @@ export class EventsChartComponent implements OnInit {
       return;
     }
 
-    const data: ChartData = Event.convertArrayToChart(events);
+    const cd: ChartData = Event.convertArrayToChart(events);
+
+    const series: EChartOption.Series[] = cd.data.map<EChartOption.Series>(
+      (d) => {
+       return {
+         data: d,
+         type: "bar"
+       }
+      }
+     );
 
     this.eventsHourlyChartOptions = {
       xAxis: {  // Labels for x axis
-        data: data.xAxis,
+        data: cd.xAxis,
       },
       yAxis: {},
-      series: [
-        {
-          data: data.yAxis,
-          type: "bar"
-        }
-      ],
+      series: series,
       tooltip: {},
       title: {
         text: "Events Hourly"

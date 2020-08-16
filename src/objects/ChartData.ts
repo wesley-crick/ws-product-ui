@@ -1,9 +1,9 @@
 export class ChartData {
 	xAxis: string[];
-	yAxis: string[];
+	data: string[][];
 
 	constructor() {
 		this.xAxis = [];
-		this.yAxis = [];
+		this.data = [];
 	}
 }

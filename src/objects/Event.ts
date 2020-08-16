@@ -23,19 +23,21 @@ export class Event {
 	}
 
 	static convertArrayToChart(arr: Event[]): ChartData {
-		const data: ChartData = new ChartData();
-
+		const cd: ChartData = new ChartData();
+		const data = [];
 		arr.forEach( (e) => {
-			data.yAxis.push(e.events);
+			data.push(e.events);
 			if ( e.hour ) {
-				data.xAxis.push(e.date.format("MMM DD, YYYY hh:00A"));
+				cd.xAxis.push(e.date.format("MMM DD, YYYY hh:00A"));
 			} else {
-				data.xAxis.push(e.date.format("MMM DD, YYYY"));
+				cd.xAxis.push(e.date.format("MMM DD, YYYY"));
 			}
 			
 		} );
 
-		return data;
+		cd.data = [data];
+
+		return cd;
 	}
 }
 
