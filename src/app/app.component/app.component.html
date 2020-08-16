@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-4">
+		<div *ngIf="eventsDailyChartOptions != null">
+			<div echarts [options]="eventsDailyChartOptions"></div>
+		</div>
+	</div>
+	<div class="col-8">
+		<div *ngIf="eventsHourlyChartOptions != null">
+			<div echarts [options]="eventsHourlyChartOptions"></div>
+		</div>
+	</div>
+</div>
