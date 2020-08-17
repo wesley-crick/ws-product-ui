@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Event, EventResponse } from "../objects/Event";
 import { Stat, StatResponse } from "../objects/Stat";
+import { POI } from "../objects/POI";
 
 @Injectable({
 	providedIn: 'root'
@@ -120,5 +121,24 @@ export class AppService {
 		}
 
 		return Stat.fromJsonArray(sr);
+	}
+
+	async getPOIs(): Promise<POI[]> {
+		let headers: HttpHeaders = new HttpHeaders({
+			'Content-Type': 'application/json; charset=utf-8',
+			"x-api-key": environment.apikey
+		});
+
+		let options = {
+			headers: headers,
+			withCredentials: true
+		}
+
+		try {
+			return await this.http.get<POI[]>(environment.url + "poi", options).toPromise();
+		} catch (e) {
+			console.log(e);
+		}
+
 	}
 }
