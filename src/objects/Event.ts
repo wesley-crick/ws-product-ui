@@ -2,6 +2,9 @@ import {Moment} from "moment";
 import * as moment from 'moment';
 import { ChartData } from "./ChartData";
 
+/**
+ * Structure for the Event fields. Along with some utility functions.
+ */
 export class Event {
 	date: Moment;
 	events: string;
@@ -18,10 +21,20 @@ export class Event {
 		}
 	}
 
+	/**
+	 * Create an array of events from the api's response
+	 * 
+	 * @param arr 
+	 */
 	static fromJsonArray(arr: EventResponse[]): Event[] {
 		return arr.map<Event>( er => new Event(er) );
 	}
 
+	/**
+	 * Convert an Event Array into something the charts can use.
+	 * 
+	 * @param arr 
+	 */
 	static convertArrayToChart(arr: Event[]): ChartData {
 		const cd: ChartData = new ChartData();
 		const data = [];

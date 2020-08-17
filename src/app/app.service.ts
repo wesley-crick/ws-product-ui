@@ -5,6 +5,9 @@ import { Event, EventResponse } from "../objects/Event";
 import { Stat, StatResponse } from "../objects/Stat";
 import { POI } from "../objects/POI";
 
+/**
+ * Make calls to the API.
+ */
 @Injectable({
 	providedIn: 'root'
 })
@@ -35,6 +38,9 @@ export class AppService {
 		}
 	}
 
+	/**
+	 * Get event metrics, with an hour field
+	 */
 	async getEventsHourly(): Promise<Event[]> {
 
 		let headers: HttpHeaders = new HttpHeaders({
@@ -57,6 +63,9 @@ export class AppService {
 		return Event.fromJsonArray(eventResponses);
 	}
 
+	/**
+	 * Get event metrics, by day.
+	 */
 	async getEventsDaily(): Promise<Event[]> {
 
 		let headers: HttpHeaders = new HttpHeaders({
@@ -79,6 +88,9 @@ export class AppService {
 		return Event.fromJsonArray(eventResponses);
 	}
 
+	/**
+	 * Gets stat metrics, with an hour field.
+	 */
 	async getStatsHourly(): Promise<Stat[]> {
 
 		let headers: HttpHeaders = new HttpHeaders({
@@ -101,6 +113,9 @@ export class AppService {
 		return Stat.fromJsonArray(sr);
 	}
 	
+	/**
+	 * Get stat metrics, by day.
+	 */
 	async getStatsDaily(): Promise<Stat[]> {
 
 		let headers: HttpHeaders = new HttpHeaders({
@@ -123,6 +138,9 @@ export class AppService {
 		return Stat.fromJsonArray(sr);
 	}
 
+	/**
+	 * Get places of interest.
+	 */
 	async getPOIs(): Promise<POI[]> {
 		let headers: HttpHeaders = new HttpHeaders({
 			'Content-Type': 'application/json; charset=utf-8',
@@ -141,6 +159,12 @@ export class AppService {
 		}
 	}
 
+	/**
+	 * Convert an error to a string that can be returned.
+	 * Usually for an Http Error
+	 * 
+	 * @param e An error object, from a catch clause
+	 */
 	private handleError(e: any): string {
 		if ( e instanceof HttpErrorResponse ) {
 			let httpError: HttpErrorResponse = e;

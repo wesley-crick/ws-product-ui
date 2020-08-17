@@ -2,6 +2,9 @@ import {Moment} from "moment";
 import * as moment from 'moment';
 import { ChartData } from './ChartData';
 
+/**
+ * Structure for the Stat fields. Along with some utility functions.
+ */
 export class Stat {
 	date: Moment;
 	hour?: number;
@@ -22,10 +25,20 @@ export class Stat {
 		}
 	}
 
+	/**
+	 * Create an array of stats from the api's response
+	 * 
+	 * @param arr 
+	 */
 	static fromJsonArray(arr: StatResponse[]): Stat[] {
 		return arr.map<Stat>( sr => new Stat(sr) );
 	}
 
+	/**
+	 * Convert an Stat Array into something the charts can use.
+	 * 
+	 * @param arr 
+	 */
 	static convertArrayToChart(arr: Stat[]): ChartData {
 		const cd: ChartData = new ChartData();
 
@@ -38,7 +51,7 @@ export class Stat {
 			clicksArr.push(s.clicks);
 			revenueArr.push(s.revenue);
 
-			if ( s.hour ) {
+			if ( s.hour ) {	// Add hour to the date object, if it exists.
 				cd.xAxis.push(s.date.format("MMM DD, YYYY hh:00A"));
 			} else {
 				cd.xAxis.push(s.date.format("MMM DD, YYYY"));
@@ -46,7 +59,9 @@ export class Stat {
 			
 		} );
 
+		// Names for the different metrics
 		cd.names = ["Impressions", "Clicks", "Revenue"];
+		// Setting the multi dimensional array
 		cd.data = [impressionsArr, clicksArr, revenueArr];
 
 		return cd;

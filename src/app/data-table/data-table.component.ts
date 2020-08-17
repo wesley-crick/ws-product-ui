@@ -63,6 +63,11 @@ export class DataTableComponent implements OnInit {
     this.dtTrigger.next();
   }
 
+  /**
+   * Linked to the keyup event of the search box. Will highlight the found rows.
+   * 
+   * @param evt 
+   */
   onSearchKeyUp(evt: KeyboardEvent) {
     let search: string = (evt.target as any).value;
     search = search.toLowerCase().trim();

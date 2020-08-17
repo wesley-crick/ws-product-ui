@@ -45,6 +45,11 @@ export class GeoComponent implements OnInit {
     this.initMap(dataTableItems);
   }
 
+  /**
+   * Generates the google map, and places the markers
+   * 
+   * @param dataTableItems The markers to be put on the map.
+   */
   initMap(dataTableItems: DataTableItem[]) {
     const map: any = new (window as any).google.maps.Map(document.getElementById('map'), {
       zoom: 5,

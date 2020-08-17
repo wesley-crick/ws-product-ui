@@ -23,6 +23,9 @@ export class StatsChartComponent implements OnInit {
     this.getStatsHourly();
   }
 
+  /**
+   * Make a call to the API to get stats per day
+   */
   async getStatsDaily() {
     let stats: Stat[];
     try {
@@ -77,6 +80,9 @@ export class StatsChartComponent implements OnInit {
     };
   }
 
+  /**
+   * Make a call to the API to get stats per hour
+   */
   async getStatsHourly() {
     let stats: Stat[];
     try {

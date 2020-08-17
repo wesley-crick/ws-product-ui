@@ -2,8 +2,11 @@ import {Moment} from "moment";
 import { POI } from './POI';
 import { Stat } from './Stat';
 
+/**
+ * The data that goes into the rows of the data table.
+ */
 export class DataTableItem {
-	date: string;
+	date: string;			
 	impressions: number;
 	clicks: number;
 	revenue: number;
@@ -11,7 +14,7 @@ export class DataTableItem {
 	lName: string;	//Lower case version of the name. Optimized for searching
 	lat: number;
 	lon: number;
-	isHighlighted: boolean;
+	isHighlighted: boolean;	// If true it will add the isHighlighted CSS class to the row
 
 	static buildDataTableItems(stats: Stat[], poi: POI[]): DataTableItem[] {
 		return stats.map<DataTableItem>(

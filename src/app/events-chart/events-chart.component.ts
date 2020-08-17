@@ -24,6 +24,9 @@ export class EventsChartComponent implements OnInit {
     this.getEventsHourly();
   }
 
+  /**
+   * Makes a call to the api to get events by day
+   */
   async getEventsDaily() {
     let events: Event[];
     try {
@@ -57,6 +60,9 @@ export class EventsChartComponent implements OnInit {
     };
   }
 
+  /**
+   * Makes a call to the api to get events by hour
+   */
   async getEventsHourly() {
     let events: Event[];
     try {
