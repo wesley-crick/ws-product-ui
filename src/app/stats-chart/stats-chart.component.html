@@ -1,1 +1,14 @@
-<p>stats-chart works!</p>
+<div class="card m-4">
+	<div class="card-header">
+	  Stats
+	</div>
+	<div class="card-body">
+		<div *ngIf="statsDailyChartOptions != null">
+			<div echarts [options]="statsDailyChartOptions"></div>
+		</div>
+
+		<div *ngIf="statsHourlyChartOptions != null">
+			<div echarts [options]="statsHourlyChartOptions"></div>
+		</div>
+	</div>
+</div>

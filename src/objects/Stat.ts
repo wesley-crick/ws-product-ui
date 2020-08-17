@@ -26,21 +26,31 @@ export class Stat {
 		return arr.map<Stat>( sr => new Stat(sr) );
 	}
 
-	/*static convertArrayToChart(arr: Stat[]): ChartData {
-		const data: ChartData = new ChartData();
+	static convertArrayToChart(arr: Stat[]): ChartData {
+		const cd: ChartData = new ChartData();
 
-		arr.forEach( (e) => {
-			data.yAxis.push(e.events);
-			if ( e.hour ) {
-				data.xAxis.push(e.date.format("MMM DD, YYYY hh:00A"));
+		const impressionsArr = [];
+		const clicksArr = [];
+		const revenueArr = [];
+
+		arr.forEach( (s) => {
+			impressionsArr.push(s.impressions);
+			clicksArr.push(s.clicks);
+			revenueArr.push(s.revenue);
+
+			if ( s.hour ) {
+				cd.xAxis.push(s.date.format("MMM DD, YYYY hh:00A"));
 			} else {
-				data.xAxis.push(e.date.format("MMM DD, YYYY"));
+				cd.xAxis.push(s.date.format("MMM DD, YYYY"));
 			}
 			
 		} );
 
-		return data;
-	}*/
+		cd.names = ["Impressions", "Clicks", "Revenue"];
+		cd.data = [impressionsArr, clicksArr, revenueArr];
+
+		return cd;
+	}
 
 }
 

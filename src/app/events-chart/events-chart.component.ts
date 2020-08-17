@@ -50,7 +50,7 @@ export class EventsChartComponent implements OnInit {
       series: series,
       tooltip: {},
       title: {
-        text: "Events Daily"
+        text: "Daily"
       }
     };
   }
@@ -83,7 +83,7 @@ export class EventsChartComponent implements OnInit {
       series: series,
       tooltip: {},
       title: {
-        text: "Events Hourly"
+        text: "Hourly"
       },
       dataZoom: [
         {

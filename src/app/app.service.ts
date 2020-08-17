@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Event, EventResponse } from "../objects/Event";
-import { Stat } from "../objects/Stat";
+import { Stat, StatResponse } from "../objects/Stat";
 
 @Injectable({
 	providedIn: 'root'
@@ -90,11 +90,14 @@ export class AppService {
 			withCredentials: true
 		}
 
+		let sr: StatResponse[] = [];
 		try {
-			return await this.http.get<Stat[]>(environment.url + "stats/hourly", options).toPromise();
+			sr = await this.http.get<StatResponse[]>(environment.url + "stats/hourly", options).toPromise();
 		} catch (e) {
 			console.log(e);
 		}
+
+		return Stat.fromJsonArray(sr);
 	}
 	
 	async getStatsDaily(): Promise<Stat[]> {
@@ -109,10 +112,13 @@ export class AppService {
 			withCredentials: true
 		}
 
+		let sr: StatResponse[] = [];
 		try {
-			return await this.http.get<Stat[]>(environment.url + "stats/daily", options).toPromise();
+			sr = await this.http.get<StatResponse[]>(environment.url + "stats/daily", options).toPromise();
 		} catch (e) {
 			console.log(e);
 		}
+
+		return Stat.fromJsonArray(sr);
 	}
 }
