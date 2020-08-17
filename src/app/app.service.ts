@@ -144,7 +144,13 @@ export class AppService {
 	private handleError(e: any): string {
 		if ( e instanceof HttpErrorResponse ) {
 			let httpError: HttpErrorResponse = e;
-			return `${e.message}. Please try again later.`;
+			switch(e.status) {
+				case 429:
+					return "Too many request. Please try again later.";
+				default:
+					console.log(e);
+					return "Server error. Please try again later.";
+			}
 		}
 		console.log(e);
 		return "Unknown error occured. Please try again later.";

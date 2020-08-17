@@ -3,6 +3,7 @@
 		Geo Visuals
 	</div>
 	<div class="card-body">
-		<div id="map"></div>
+		<div *ngIf="error == ''" id="map"></div>
+		<div *ngIf="error != ''">{{error}}</div>
 	</div>
 </div>

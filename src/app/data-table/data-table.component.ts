@@ -18,6 +18,8 @@ export class DataTableComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
+  error: string = "";
+
   constructor(private service: AppService) { }
 
   ngOnInit(): void {
@@ -26,20 +28,6 @@ export class DataTableComponent implements OnInit {
       pageLength: 10,
       searching: false
     };
-
-    /*$.fn['dataTable'].ext.search.push((settings, data, dataIndex) => {
-      const searchText: string = $("input[type='search']").val().toString().toLowerCase().trim();
-
-      // If found in the search, highlight the row
-      if (this.dataTableItems[dataIndex].name.toLowerCase().indexOf(searchText) > -1 && searchText != "") {
-        this.dataTableItems[dataIndex].isHighlighted = true;
-      } else {
-        this.dataTableItems[dataIndex].isHighlighted = false;
-      }
-
-      // Always returns true so all data is visible
-      return true;
-    });*/
 
     this.getData();
   }
@@ -57,7 +45,7 @@ export class DataTableComponent implements OnInit {
     try {
       stats = await this.service.getStatsHourly();
     } catch (e) {
-      // {TODO} Error handling
+      this.error = e;
       return;
     }
 
@@ -65,7 +53,7 @@ export class DataTableComponent implements OnInit {
     try {
       poi = await this.service.getPOIs();
     } catch (e) {
-      // {TODO} Error handling
+      this.error = e;
       return;
     }
 

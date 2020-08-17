@@ -12,6 +12,8 @@ import { DataTableItem } from 'src/objects/DataTableItem';
 })
 export class GeoComponent implements OnInit {
 
+  error: string = "";
+
   constructor(private service: AppService) { }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class GeoComponent implements OnInit {
     try {
       stats = await this.service.getStatsHourly();
     } catch (e) {
-      // {TODO} Error handling
+      this.error = e;
       return;
     }
 
@@ -34,7 +36,7 @@ export class GeoComponent implements OnInit {
     try {
       poi = await this.service.getPOIs();
     } catch (e) {
-      // {TODO} Error handling
+      this.error = e;
       return;
     }
 

@@ -15,6 +15,8 @@ export class EventsChartComponent implements OnInit {
   eventsDailyChartOptions: EChartOption;
   eventsHourlyChartOptions: EChartOption;
 
+  error: string = "";
+
   constructor(private service: AppService) { }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class EventsChartComponent implements OnInit {
     try {
       events = await this.service.getEventsDaily();
     } catch(e) {
-      // {TODO} Error logic
+      this.error = e;
       return;
     }
 
@@ -60,7 +62,7 @@ export class EventsChartComponent implements OnInit {
     try {
       events = await this.service.getEventsHourly();
     } catch(e) {
-      // {TODO} Error logic
+      this.error = e;
       return;
     }
 

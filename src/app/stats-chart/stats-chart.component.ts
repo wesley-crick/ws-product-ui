@@ -14,6 +14,8 @@ export class StatsChartComponent implements OnInit {
   statsDailyChartOptions: EChartOption;
   statsHourlyChartOptions: EChartOption;
 
+  error: string = "";
+
   constructor(private service: AppService) { }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class StatsChartComponent implements OnInit {
     try {
       stats = await this.service.getStatsDaily();
     } catch(e) {
-      // {TODO} Error logic
+      this.error = e;
       return;
     }
 
@@ -80,7 +82,7 @@ export class StatsChartComponent implements OnInit {
     try {
       stats = await this.service.getStatsHourly();
     } catch(e) {
-      // {TODO} Error logic
+      this.error = e;
       return;
     }
 

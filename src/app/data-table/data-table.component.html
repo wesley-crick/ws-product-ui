@@ -3,36 +3,39 @@
 		Data Table
 	</div>
 	<div class="card-body">
-
-		<div class="row">
-			<div class="col-lg-3 cold-md-4 mb-2">
-				<input type="text" placeholder="Search" class="form-control" (keyup)="onSearchKeyUp($event)">
+		<div *ngIf="error == ''">
+			<div class="row">
+				<div class="col-lg-3 cold-md-4 mb-2">
+					<input type="text" placeholder="Search" class="form-control" (keyup)="onSearchKeyUp($event)">
+				</div>
 			</div>
+	
+			<table class="table table-striped" #poiDatatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Latitude </th>
+						<th scope="col">Longitude</th>
+						<th scope="col">Date</th>
+						<th scope="col">Impressions</th>
+						<th scope="col">Clicks</th>
+						<th scope="col">Revenue</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of dataTableItems" [class.isHighlighted] = "item.isHighlighted">
+						<td>{{item.name}}</td>
+						<td>{{item.lat}}</td>
+						<td>{{item.lon}}</td>
+						<td>{{item.date}}</td>
+						<td>{{item.impressions}}</td>
+						<td>{{item.clicks}}</td>
+						<td>{{item.revenue}}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-
-		<table class="table table-striped" #poiDatatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-			<thead>
-				<tr>
-					<th scope="col">Name</th>
-					<th scope="col">Latitude </th>
-					<th scope="col">Longitude</th>
-					<th scope="col">Date</th>
-					<th scope="col">Impressions</th>
-					<th scope="col">Clicks</th>
-					<th scope="col">Revenue</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let item of dataTableItems" [class.isHighlighted] = "item.isHighlighted">
-					<td>{{item.name}}</td>
-					<td>{{item.lat}}</td>
-					<td>{{item.lon}}</td>
-					<td>{{item.date}}</td>
-					<td>{{item.impressions}}</td>
-					<td>{{item.clicks}}</td>
-					<td>{{item.revenue}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div *ngIf="error != ''">{{error}}</div>
+		
 	</div>
 </div>

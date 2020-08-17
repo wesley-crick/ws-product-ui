@@ -3,12 +3,15 @@
 	  Stats
 	</div>
 	<div class="card-body">
-		<div *ngIf="statsDailyChartOptions != null">
-			<div echarts [options]="statsDailyChartOptions"></div>
+		<div *ngIf="error == ''">
+			<div *ngIf="statsDailyChartOptions != null">
+				<div echarts [options]="statsDailyChartOptions"></div>
+			</div>
+	
+			<div *ngIf="statsHourlyChartOptions != null">
+				<div echarts [options]="statsHourlyChartOptions"></div>
+			</div>
 		</div>
-
-		<div *ngIf="statsHourlyChartOptions != null">
-			<div echarts [options]="statsHourlyChartOptions"></div>
-		</div>
+		<div *ngIf="error != ''">{{error}}</div>
 	</div>
 </div>

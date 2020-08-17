@@ -3,7 +3,7 @@
 	  Events
 	</div>
 	<div class="card-body">
-		<div class="row">
+		<div *ngIf="error == ''" class="row">
 			<div class="col-4">
 				<div *ngIf="eventsDailyChartOptions != null">
 					<div echarts [options]="eventsDailyChartOptions"></div>
@@ -15,5 +15,6 @@
 				</div>
 			</div>
 		</div>
+		<div *ngIf="error != ''">{{error}}</div>
 	</div>
 </div>
