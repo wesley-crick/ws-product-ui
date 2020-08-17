@@ -11,13 +11,15 @@ import { AppComponent } from './app.component/app.component';
 import { EventsChartComponent } from './events-chart/events-chart.component';
 import { StatsChartComponent } from './stats-chart/stats-chart.component';
 import { DataTableComponent } from './data-table/data-table.component';
+import { GeoComponent } from './geo/geo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsChartComponent,
     StatsChartComponent,
-    DataTableComponent
+    DataTableComponent,
+    GeoComponent
   ],
   imports: [
     BrowserModule,
