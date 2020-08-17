@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Event, EventResponse } from "../objects/Event";
 import { Stat, StatResponse } from "../objects/Stat";
 import { POI } from "../objects/POI";
@@ -51,7 +51,7 @@ export class AppService {
 		try {
 			eventResponses = await this.http.get<EventResponse[]>(environment.url + "events/hourly", options).toPromise();
 		} catch (e) {
-			console.log(e);
+			throw this.handleError(e);
 		}
 
 		return Event.fromJsonArray(eventResponses);
@@ -73,7 +73,7 @@ export class AppService {
 		try {
 			eventResponses = await this.http.get<EventResponse[]>(environment.url + "events/daily", options).toPromise();
 		} catch (e) {
-			console.log(e);
+			throw this.handleError(e);
 		}
 
 		return Event.fromJsonArray(eventResponses);
@@ -95,7 +95,7 @@ export class AppService {
 		try {
 			sr = await this.http.get<StatResponse[]>(environment.url + "stats/hourly", options).toPromise();
 		} catch (e) {
-			console.log(e);
+			throw this.handleError(e);
 		}
 
 		return Stat.fromJsonArray(sr);
@@ -117,7 +117,7 @@ export class AppService {
 		try {
 			sr = await this.http.get<StatResponse[]>(environment.url + "stats/daily", options).toPromise();
 		} catch (e) {
-			console.log(e);
+			throw this.handleError(e);
 		}
 
 		return Stat.fromJsonArray(sr);
@@ -137,8 +137,16 @@ export class AppService {
 		try {
 			return await this.http.get<POI[]>(environment.url + "poi", options).toPromise();
 		} catch (e) {
-			console.log(e);
+			throw this.handleError(e);
 		}
+	}
 
+	private handleError(e: any): string {
+		if ( e instanceof HttpErrorResponse ) {
+			let httpError: HttpErrorResponse = e;
+			return `${e.message}. Please try again later.`;
+		}
+		console.log(e);
+		return "Unknown error occured. Please try again later.";
 	}
 }

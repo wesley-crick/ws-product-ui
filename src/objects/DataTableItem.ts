@@ -8,6 +8,7 @@ export class DataTableItem {
 	clicks: number;
 	revenue: number;
 	name: string;
+	lName: string;	//Lower case version of the name. Optimized for searching
 	lat: number;
 	lon: number;
 	isHighlighted: boolean;
@@ -24,6 +25,7 @@ export class DataTableItem {
 				lat: p.lat,
 				lon: p.lon,
 				name: p.name,
+				lName: p.name.toLowerCase(),
 				revenue: s.revenue,
 				isHighlighted: false
 			  }

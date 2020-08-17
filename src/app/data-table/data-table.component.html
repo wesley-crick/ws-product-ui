@@ -1,8 +1,15 @@
 <div class="card m-4">
 	<div class="card-header">
-		Stats
+		Data Table
 	</div>
 	<div class="card-body">
+
+		<div class="row">
+			<div class="col-lg-3 cold-md-4 mb-2">
+				<input type="text" placeholder="Search" class="form-control" (keyup)="onSearchKeyUp($event)">
+			</div>
+		</div>
+
 		<table class="table table-striped" #poiDatatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
 			<thead>
 				<tr>

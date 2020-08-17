@@ -23,10 +23,11 @@ export class DataTableComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: "full_numbers",
-      pageLength: 10
+      pageLength: 10,
+      searching: false
     };
 
-    $.fn['dataTable'].ext.search.push((settings, data, dataIndex) => {
+    /*$.fn['dataTable'].ext.search.push((settings, data, dataIndex) => {
       const searchText: string = $("input[type='search']").val().toString().toLowerCase().trim();
 
       // If found in the search, highlight the row
@@ -38,7 +39,7 @@ export class DataTableComponent implements OnInit {
 
       // Always returns true so all data is visible
       return true;
-    });
+    });*/
 
     this.getData();
   }
@@ -72,6 +73,19 @@ export class DataTableComponent implements OnInit {
 
     // Render the table
     this.dtTrigger.next();
+  }
+
+  onSearchKeyUp(evt: KeyboardEvent) {
+    let search: string = (evt.target as any).value;
+    search = search.toLowerCase().trim();
+
+    this.dataTableItems.forEach( (item) => {
+      if ( item.name.toLowerCase().indexOf(search) > -1 && search != "" ) {
+        item.isHighlighted = true;
+      } else {
+        item.isHighlighted = false;
+      }
+    });
   }
 
 }
