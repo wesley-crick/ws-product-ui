@@ -1,1 +1,31 @@
-<p>data-table works!</p>
+<div class="card m-4">
+	<div class="card-header">
+		Stats
+	</div>
+	<div class="card-body">
+		<table class="table table-striped" #poiDatatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Latitude </th>
+					<th scope="col">Longitude</th>
+					<th scope="col">Date</th>
+					<th scope="col">Impressions</th>
+					<th scope="col">Clicks</th>
+					<th scope="col">Revenue</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of dataTableItems" [class.isHighlighted] = "item.isHighlighted">
+					<td>{{item.name}}</td>
+					<td>{{item.lat}}</td>
+					<td>{{item.lon}}</td>
+					<td>{{item.date}}</td>
+					<td>{{item.impressions}}</td>
+					<td>{{item.clicks}}</td>
+					<td>{{item.revenue}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
